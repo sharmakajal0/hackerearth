@@ -1,43 +1,19 @@
 #include<stdio.h>
+#include<assert.h>
+#define REP(i, a, b) for(i=a;i<b;i++)
+#define rep(i, n) REP(i, 0, n)
 
-#define MAX 1000000
+#define M 1000000007
 
-int maximum_difference(int arr[], long int n){
-    int max = 0;
-    int difference;
-    for(int i=1;i<n;i++){
-        difference = arr[i] - arr[i-1];
-        if(difference > max){
-            max = difference;
-        }
-    }
-    
-    return max;
-}
+int dp[1001][1001];
+int res[1001];
 
 int main(){
-    int arr[MAX];
-    int n;
-    int ans, t;
-
-    scanf("%d", &t);
-
-    while(t > 0){
-        scanf("%d", &n);
-        for(int i=0;i<n;i++){
-            scanf("%d", &arr[i]);
-        }
-        ans = maximum_difference(arr, n);
-
-        if(ans > 0){
-            printf("%d\n", ans);
-        }
-        else{
-            printf("UNFIT\n");
-        }
-        ans = 0;
-        t--;
+    int T, N;
+    int i, j;
+    dp[0][0] = 1;
+    for(i=0;i<1000;i++) for(j=0;j<1000;j++) if(dp[i][j]){
+        dp[i+1][j] = (dp[i+1][j] dp[i][j] * (long long)(j+1)) % M;
+        
     }
-
-    return 0;
 }
